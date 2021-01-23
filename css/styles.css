@@ -65,7 +65,7 @@ section {
     
 }
 
-.navbar__menu a {
+.navbar__menu button {
     display: block;
     padding: 1em;
     font-weight: bold;
@@ -73,13 +73,13 @@ section {
     color: #000;
 }
 
-.navbar__menu a:hover {
+.navbar__menu button:hover {
     background: #333;
     color: #fff;
     transition: ease 0.3s all;
 }
 
-.navbar__menu a.active {
+.navbar__menu button.active {
     background: #333;
     color: #fff;
 }
