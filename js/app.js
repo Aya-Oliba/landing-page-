@@ -8,17 +8,21 @@ const sections = document.querySelectorAll("section");
 // in one loop Build the navigation menu dynamically and  Clicking on a navigation item  scroll to the appropriate section of the page 
 sections.forEach(section => {
     const li = document.createElement("li");
-    const link = document.createElement("a");
-    link.text = section.getAttribute("data-nav");
-    link.href = "#" + section.id;
-    li.appendChild(link);
+    const button = document.createElement("button");
+    button.textContent = section.getAttribute("data-nav");
+    button.addEventListener("click", () =>{
+        section.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+    });
+
+    li.appendChild(button);
     fragNav.appendChild(li);
 }); 
 ul.appendChild(fragNav);
 
-// giving  first link class active to be viewed  like first section which is active by default
-const links = document.querySelectorAll("#navbar__list a");
-links[0].classList.add("active");
+// giving  first button class active to be viewed  like first section which is active by default
+const buttons = document.querySelectorAll("#navbar__list button");
+buttons[0].classList.add("active");
+console.log(buttons[0].classList);
 
 // Add eventlistener  so that on scrolling "your-active-class" class is added to the section  in viewport
 document.addEventListener("scroll",function(){
@@ -30,12 +34,12 @@ document.addEventListener("scroll",function(){
                 oldActiveSec[0].classList.remove("your-active-class");
                 section.classList.add("your-active-class");
 
-                // adding class "active" to the link corresponding to the section in viewport
-                links.forEach(link =>{
-                    if(section.getAttribute("data-nav") === link.text){
-                        link.classList.add("active");
+                // adding class "active" to the button corresponding to the section in viewport
+                buttons.forEach(button =>{
+                    if(section.getAttribute("data-nav") === button.textContent){
+                        button.classList.add("active");
                     }else{
-                        link.classList.remove("active");
+                        button.classList.remove("active");
                     };
                 });
             }
